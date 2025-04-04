@@ -18,3 +18,11 @@ TypeScript Tutorial based off of the NetNinja Youtube channel TypeScript course
 - NOTE: if you have both your .ts and .js files open, you will get the following error, just close your .js file tab to resolve the error in your corresponding .ts file:
 
 `Cannot redeclare block-scoped variable...`
+
+## JTM-3: Type Basics
+- enforce correct type e.g parameter diameter `(diameter: number)`:
+```
+const circ = (diameter: number) => {
+  return Math.PI * diameter;
+}
+```
