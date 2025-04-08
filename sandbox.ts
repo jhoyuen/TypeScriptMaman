@@ -1,51 +1,36 @@
+// explicit types
+let character: string;
+let age: number;
+let isLoggedIn: boolean;
+age = 30;
+//age = '30'; // error: Type 'string' is not assignable to type 'number'
+isLoggedIn = true;
+//isLoggedIn = 1; // error: Type '1' is not assignable to type 'boolean'
+
+
 // arrays
-let names = ['Alice', 'Bob', 'Charlie'];
-names.push('David');
-//names.push(42); // Type 'number' is not assignable to type 'string'.
-//names[0] = 30; // Type 'number' is not assignable to type 'string'.
-//names = 'Eve'; // Type 'string' is not assignable to type 'string[]'.
+let names: string[] = []; // need to initialize the array to allow push
+names.push('John');
 
-let numbers = [1, 2, 3, 4, 5];
-numbers.push(6);
-//numbers.push('seven'); // Type 'string' is not assignable to type 'number'.
-//numbers[0] = 'one'; // Type 'string' is not assignable to type 'number'.
 
-let mixed = [1, 'two', 3, 'four'];
-mixed.push('five');
-mixed.push(6);
-mixed[0] = 'one';
+// union types
+let mixed: (string | number)[] = []; // array can contain strings and numbers
+mixed.push('John');
+mixed.push(30);
+//mixed.push(true); // error: Type 'boolean' is not assignable to type 'string | number'
 
-let mixedArray: (string | number)[] = ['Alice', 42, 'Bob', 100];
+let uid: string | number; // uid can be a string or a number
+uid = '123'; // string
+uid = 123; // number  
+//uid = true; // error: Type 'boolean' is not assignable to type 'string | number'
 
 
 // objects
-let person = {
-  name: 'Alice',
-  age: 30,
-  isStudent: false
-};
+let ninja: object;
+ninja = { name: 'John', age: 30 };
+ninja = []; // this is also an object, but not the one we want
 
-person.age = 31;
-person.name = 'Bob';
-//person.age = 'thirty'; // Type 'string' is not assignable to type 'number'.
-//person.skills = ['JavaScript', 'TypeScript']; // Property 'skills' does not exist on type '{ name: string; age: number; isStudent: boolean; }'.
-//person = ''; // Type 'undefined' is not assignable to type '{ name: string; age: number; isStudent: boolean; }'.
-
-person = {
-  name: 'Jon',
-  age: 25,
-  isStudent: true
-};
-
-// person = {
-//   name: 'Jon',
-//   age: 25,
-//   //isStudent: true
-// }; // Type '{ name: string; age: number; }' is not assignable to type '{ name: string; age: number; isStudent: boolean; }'.
-
-// person = {
-//   name: 'Alice',
-//   age: 30,
-//   isStudent: false,
-//   skills: ['JavaScript', 'TypeScript']
-// }; // Type '{ name: string; age: number; isStudent: boolean; skills: string[]; }' is not assignable to type '{ name: string; age: number; isStudent: boolean; }'. Property 'skills' does not exist on type '{ name: string; age: number; isStudent: boolean; }'.
+// to use the properties of the object, we need to use a type assertion
+let ninjaTwo: { name:string, age: number }; 
+ninjaTwo = { name: 'John', age: 30 };
+//ninjaTwo = { name: 'John' }; // error: Property 'age' is missing in type '{ name: string; }' but required in type '{ name: string; age: number; }'
