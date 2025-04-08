@@ -1,14 +1,14 @@
-var character = 'Goku';
-var age = 30;
-var isSuperSaiyan = true;
-//character = 20; // Error: Type 'number' is not assignable to type 'string'
-character = 'Yamcha';
-//age = 'thirty'; // Error: Type 'string' is not assignable to type 'number'
-age = 35;
-//isSuperSaiyan = 1; // Error: Type 'number' is not assignable to type 'boolean'
-isSuperSaiyan = false;
-var circ = function (diameter) {
-    return Math.PI * diameter;
-};
-//console.log(circ('hello')); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
-console.log(circ(5.5)); // 17.27875959474386
+// Defeats the purpose of Types in TypeScript but there may be edge case scenarios where you need to use it
+// where you don't know the type of a variable at compile time
+var age = 25;
+age = true;
+age = "hello world";
+age = { name: "John" };
+age = [1, 2, 3, 4, 5];
+var mixed = [1, "hello", true, { name: "John" }, [1, 2, 3]];
+mixed.push(100);
+mixed.push("world");
+mixed.push(false);
+var person;
+person = { name: "John", age: 25, isEmployed: true };
+person = { name: "John", age: 25, isEmployed: "yes" }; // This is allowed because of 'any' type
