@@ -84,8 +84,8 @@ person = {
 ```
 
 ## JTM-5: Explicit Types
-```
 Examples of variables with `types declared explicitly`:
+```
 let character: string;
 let age: number;
 let isLoggedIn: boolean;
