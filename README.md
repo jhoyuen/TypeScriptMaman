@@ -82,3 +82,16 @@ person = {
 //   skills: ['JavaScript', 'TypeScript']
 // }; // Type '{ name: string; age: number; isStudent: boolean; skills: string[]; }' is not assignable to type '{ name: string; age: number; isStudent: boolean; }'. Property 'skills' does not exist on type '{ name: string; age: number; isStudent: boolean; }'.
 ```
+
+## JTM-5: Explicit Types
+```
+Examples of variables with `types declared explicitly`:
+let character: string;
+let age: number;
+let isLoggedIn: boolean;
+let names: string[] = [];
+let mixed: (string | number)[] = []; 
+let uid: string | number;
+let person: object;
+let personTwo: { name:string, age: number }; 
+```
