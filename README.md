@@ -118,3 +118,13 @@ let person : {
 person = { name: "John", age: 25, isEmployed: true};
 person = { name: "John", age: 25, isEmployed: "yes"}; // This is allowed because of 'any' type
 ```
+
+## JTM-7: Better workflow and tsconfig
+- `To initialize the tsconfig file` - Run the following command `tsc --init` 
+- `To update the source folder for .ts files and output folder for .js files` - Update the `rootDir` and `outDir` paths in the `tsconfig.json` file to determine where source files are found and resulting files get compiled to respectively
+- `To compile one-off .ts files ` - Run `tsc` to compile all `.ts` files in the `rootDir` folder path
+- `To compile one-off .ts files with watch` - Run `tsc -w` to compile all `.ts` files in the `rootDir` folder path every time the `.ts` file is saved
+- `To prevent .ts file outside of the rootDir path to create a .js file`, add an `include` section in the `tsconfig.json` file as follows to determine which path source files should compile output files:
+```
+"include": ["src"],
+```
