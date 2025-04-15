@@ -128,3 +128,21 @@ person = { name: "John", age: 25, isEmployed: "yes"}; // This is allowed because
 ```
 "include": ["src"],
 ```
+
+## JTM-8: Function Basics
+- basic function example below, also showing the use of `optional` and `default` parameters (required parameters come first followed by optional and default parameters)
+```
+const add = (a: number, b: number, c?: number | string, d: number | string = 10) => {
+    console.log(a + b);
+    console.log(c); // from "optional" c? parameter
+    console.log(d); // from "default" d: number = 10 parameter
+}
+```
+- Return type when not actually returning a value is `void`, which translates to `undefined` in javascript
+- Typescript can implicitly infer the value for the return type if not explicitly specified
+- However, to explicitly define the return type you would do something like this below (after the parameter parentheses `: number` in this case):
+```
+const minus = (a: number, b: number): number => {
+    return a - b;
+}
+```
