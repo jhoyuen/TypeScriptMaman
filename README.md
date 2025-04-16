@@ -146,3 +146,18 @@ const minus = (a: number, b: number): number => {
     return a - b;
 }
 ```
+
+## JTM-9: Type Aliases
+- `Type Aliases` helps us reduce code duplication by specifying type aliases that can be passed to function parameters as follows:
+```
+type stringOrNum = string | number;
+type objWithName = { name: string; uid: stringOrNum };
+
+const logDetails = (uid: stringOrNum, item: string) => {
+    console.log(`${item} has a uid of ${uid}`);
+};
+
+const greet = (user: objWithName) => {
+    console.log(`${user.name} says hello!`);
+}
+```
