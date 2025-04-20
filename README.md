@@ -276,3 +276,11 @@ invoices.forEach(inv => {
     console.log(inv.client, inv.amount, inv.format());
 });
 ```
+
+## JTM-14: Modules
+- Enable `Modules` support by going to `tsconfig.json`(NOTE: Modules will work for modern web browsers but not older ones - need to do other things to support older browsers e.g using Babel or Webpack)
+  - change `target` to `"target": "es6"`
+  - change `module` to `"module": "es2015"`
+- Update `index.html` script element type to `module` i.e `<script type="module" src='app.js'></script>`
+- Create a separate `Invoice.ts` file and export `Invoice`
+- Import `Invoice` at the top of the `app.ts` file with `import { Invoice } from './classes/Invoice.js';` 
