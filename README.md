@@ -283,4 +283,50 @@ invoices.forEach(inv => {
   - change `module` to `"module": "es2015"`
 - Update `index.html` script element type to `module` i.e `<script type="module" src='app.js'></script>`
 - Create a separate `Invoice.ts` file and export `Invoice`
-- Import `Invoice` at the top of the `app.ts` file with `import { Invoice } from './classes/Invoice.js';` 
+- Import `Invoice` at the top of the `app.ts` file with `import { Invoice } from './classes/Invoice.js';`
+
+## JTM-15: Interfaces
+- Implement `interface` example:
+```
+// Interfaces
+interface IsPerson {
+    name: string;
+    age: number;
+    speak(a: string): void;
+    spend(a: number): number;
+}
+
+// Classes
+const me: IsPerson = {
+    name: 'Mario',
+    age: 30,
+    speak(text: string): void {
+        console.log(text);
+    },
+    spend(amount: number): number {
+        console.log('I spent', amount);
+        return amount;
+    }
+};
+console.log(me);
+
+let someone: IsPerson;
+someone = {
+    name: 'Luigi',
+    age: 35,
+    speak(text: string): void {
+        console.log(text);
+    },
+    spend(amount: number): number {
+        console.log('I spent', amount);
+        return amount;
+    }
+};
+console.log(someone);
+
+const greetPerson = (person: IsPerson) => {
+    console.log('Hello', person.name);
+}
+greetPerson(me);
+greetPerson(someone);
+```
