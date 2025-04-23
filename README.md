@@ -330,3 +330,65 @@ const greetPerson = (person: IsPerson) => {
 greetPerson(me);
 greetPerson(someone);
 ```
+
+## JTM-16: Interfaces with Classes
+- Interface example `HasFormatter.ts`
+```
+export interface HasFormatter {
+    format(): string;
+}
+```
+- Class example `Invoice.ts` and `Payment.ts` implements `HasFormatter.ts`
+```
+import { HasFormatter } from '../interfaces/HasFormatter.js';
+
+export class Invoice implements HasFormatter {
+  constructor(
+      readonly client: string, 
+      private details: string, 
+      public amount: number){}
+
+  format() {
+      return `${this.client} owes $${this.amount} for ${this.details}`;
+  }
+}
+```
+```
+import { HasFormatter } from '../interfaces/HasFormatter.js';
+
+export class Payment implements HasFormatter {
+  constructor(
+      readonly recipient: string, 
+      private details: string, 
+      public amount: number){}
+
+  format() {
+      return `${this.recipient} is owed $${this.amount} for ${this.details}`;
+  }
+}
+```
+- Usage example. Instantiate new `Invoice` or new `Payment` objects based on field `type`
+```
+import { Invoice } from './classes/Invoice.js';
+import { Payment } from './classes/Payment.js';
+
+const form = document.querySelector('.new-item-form');
+//inputs
+const type = document.querySelector('#type');
+const tofrom = document.querySelector('#tofrom');
+const details = document.querySelector('#details');
+const amount = document.querySelector('#amount');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let doc;
+    if (type.value === 'invoice') {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    else {
+        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    console.log(doc);
+    console.log(doc.format());
+});
+```
