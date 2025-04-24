@@ -392,3 +392,48 @@ form.addEventListener('submit', (e) => {
     console.log(doc.format());
 });
 ```
+
+## JTM-17: Rendering an HTML template
+- First, create your `template` class:
+```
+import { HasFormatter } from "../interfaces/HasFormatter";
+
+export class ListTemplate {
+  constructor(private container: HTMLUListElement){}
+
+  render(item: HasFormatter, heading: string, pos: 'start' | 'end'){
+    const li = document.createElement('li');
+    const h4 = document.createElement('h4');
+    h4.innerText = heading;
+    li.append(h4);
+
+    const p = document.createElement('p');
+    p.innerText = item.format();
+    li.append(p);
+
+    if(pos === 'start'){
+      this.container.prepend(li);
+    } else {
+      this.container.append(li);
+    }
+  }
+}
+```
+- then, use it to `render` the desired HTML:
+```
+// list template instance
+const ul = document.querySelector('ul')!; // The exclamation mark (!) at the end means you are absolutely certain your element exists and won't be undefined
+const list = new ListTemplate(ul);
+
+form.addEventListener('submit', (e: Event) => {
+    e.preventDefault();
+    let doc: HasFormatter;
+    if (type.value === 'invoice') {
+        doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    } else {
+        doc = new Payment(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    
+    list.render(doc, type.value, 'end');
+});
+```
