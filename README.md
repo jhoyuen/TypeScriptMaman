@@ -437,3 +437,39 @@ form.addEventListener('submit', (e: Event) => {
     list.render(doc, type.value, 'end');
 });
 ```
+
+## JTM-18: Generics
+- Example `Generics`
+```
+// GENERICS
+
+const addUID = <T extends {name: string, age: number}>(obj: T) => {
+    let uid = Math.floor(Math.random() * 100);
+    return {...obj, uid}; // ... lets us grab the properties of obj
+}
+
+let docOne = addUID({name: 'Yoshi', age: 40});
+console.log(docOne);
+```
+- Example `Generics` with `interface` and `class`
+```
+// GENERICS with interface and class
+interface Resource<T> {
+    uid: number;
+    resourceName: string;
+    data: T;
+}
+
+const docTwo: Resource<object> = {
+    uid: 1,
+    resourceName: 'person',
+    data: { name: 'Shaun' }
+}
+
+const docThree: Resource<string[]> = {
+    uid: 2,
+    resourceName: 'shopping list',
+    data: ['bread', 'butter']
+}
+console.log(docTwo, docThree);
+```
