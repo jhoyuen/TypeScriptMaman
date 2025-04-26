@@ -473,3 +473,40 @@ const docThree: Resource<string[]> = {
 }
 console.log(docTwo, docThree);
 ```
+
+## JTM-19: Enums
+- Example `Enums` and usage:
+```
+// ENUMS
+enum ResourceType {
+    BOOK,
+    AUTHOR,
+    FILM,
+    DIRECTOR,
+    PERSON,
+    SHOPPING
+}
+
+interface Resource<T> {
+    uid: number;
+    resourceName: string;
+    resourceType: ResourceType;
+    data: T;
+}
+
+const docTwo: Resource<object> = {
+    uid: 1,
+    resourceName: 'person',
+    resourceType: ResourceType.PERSON,
+    data: { name: 'Shaun' }
+}
+
+const docFour: Resource<object> = {
+    uid: 3,
+    resourceName: 'Name of the wind by Patrick Rothfuss',
+    resourceType: ResourceType.BOOK,
+    data: { name: 'Name of the wind', author: 'Patrick Rothfuss' }
+}
+
+console.log(docTwo, docFour);
+```
