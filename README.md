@@ -510,3 +510,22 @@ const docFour: Resource<object> = {
 
 console.log(docTwo, docFour);
 ```
+
+## JTM-20: Tuples
+- Simple example of a `Tuple` - specify the type of the variables beforehand to indicate the fixed position of the variables in the array:
+```
+// tuples
+let tup: [string, number, boolean] = ['ryu', 25, true];
+```
+- Example `Tuple` in action:
+```
+let values: [string, string, number];
+values = [tofrom.value, details.value, amount.valueAsNumber];
+
+let doc: HasFormatter;
+if (type.value === 'invoice') {
+    doc = new Invoice(...values);
+} else {
+    doc = new Payment(...values);
+}
+```
